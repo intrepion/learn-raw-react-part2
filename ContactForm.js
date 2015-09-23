@@ -4,34 +4,37 @@ var ContactForm = React.createClass({
     onChange: React.PropTypes.func.isRequired,
   },
 
-  render: function() {
-    var oldContact = this.props.value;
-    var onChange = this.props.onChange;
+  onNameChange: function(e) {
+    this.props.onChange(Object.assign({}, this.props.value, {name: e.target.value}));
+  },
 
+  onEmailChange: function(e) {
+    this.props.onChange(Object.assign({}, this.props.value, {email: e.target.value}));
+  },
+
+  onDescriptionChange: function(e) {
+    this.props.onChange(Object.assign({}, this.props.value, {description: e.target.value}));
+  },
+
+  render: function() {
     return (
       React.createElement('form', {className: 'ContactForm'},
         React.createElement('input', {
           type: 'text',
           placeholder: 'Name (required)',
           value: this.props.value.name,
-          onChange: function(e) {
-            onChange(Object.assign({}, oldContact, {name: e.target.value}));
-          },
+          onChange: this.onNameChange,
         }),
         React.createElement('input', {
           type: 'email',
           placeholder: 'Email (required)',
           value: this.props.value.email,
-          onChange: function(e) {
-            onChange(Object.assign({}, oldContact, {email: e.target.value}));
-          },
+          onChange: this.onEmailChange,
         }),
         React.createElement('textarea', {
           placeholder: 'Description',
           value: this.props.value.description,
-          onChange: function(e) {
-            onChange(Object.assign({}, oldContact, {description: e.target.value}));
-          },
+          onChange: this.onDescriptionChange,
         }),
         React.createElement('button', {type: 'submit'}, "Add Contact")
       )
