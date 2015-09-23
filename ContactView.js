@@ -2,6 +2,7 @@ var ContactView = React.createClass({
   propTypes: {
     contacts: React.PropTypes.array.isRequired,
     newContact: React.PropTypes.object.isRequired,
+    onNewContactChange: React.PropTypes.func.isRequired,
   },
 
   render: function() {
@@ -15,7 +16,7 @@ var ContactView = React.createClass({
         React.createElement('ul', {className: 'ContactView-list'}, contactItemElements),
         React.createElement(ContactForm, {
           value: this.props.newContact,
-          onChange: function(contact) { console.log(contact); },
+          onChange: this.props.onNewContactChange,
         })
       )
     );

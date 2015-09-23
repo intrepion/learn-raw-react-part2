@@ -20,7 +20,7 @@ var ContactForm = React.createClass({
         }),
         React.createElement('input', {
           type: 'email',
-          placeholder: 'Email',
+          placeholder: 'Email (required)',
           value: this.props.value.email,
           onChange: function(e) {
             onChange(Object.assign({}, oldContact, {email: e.target.value}));
